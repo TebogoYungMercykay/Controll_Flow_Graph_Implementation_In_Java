@@ -75,6 +75,8 @@ public class Path {
             }
             this.startNode = path.startNode;
             this.endNode = path.endNode;
+        } else {
+            return;
         }
     }
 
@@ -99,7 +101,7 @@ public class Path {
     }
 
     public String toString() {
-        //Provided function, do not alter!!!
+        // Do not alter!!!
         String str = "";
         str += ((Node)nodes.toArray()[0]).getAnnotation();
         for(Object e: edges.toArray()) {
