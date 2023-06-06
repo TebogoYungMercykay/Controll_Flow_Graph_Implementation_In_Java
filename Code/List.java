@@ -113,6 +113,19 @@ public class List<T> {
         return false;
     }
 
+    public boolean search(T search){
+        if(this.head != null){
+            ListNode<T> tempListHead = this.head;
+            while(tempListHead != null){
+                if(tempListHead.data.equals(search) == true){
+                    return tempListHead;
+                }
+                tempListHead = tempListHead.next;
+            }
+        }
+        return null;
+    }
+
     public int Size(){
         return this.length;
     }
