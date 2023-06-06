@@ -3,19 +3,21 @@ public class List<T> {
     private class ListNode<T> {
         public T data;
         public ListNode<T> next;
-    
+
         public String toString(){
             return this.data.toString();
         }
-    
+
         public ListNode(T val){
             this.data = val;
             this.next = null;
         }
     }
+
     // The LinkedList Class:
     public int length;
     public ListNode<T> head;
+
     public List(){
         this.length = 0;
         this.head = null;
@@ -111,6 +113,17 @@ public class List<T> {
             }
         }
         return false;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= length) {
+            return -1;
+        }
+        ListNode<T> current = head;
+        for (int counter = 0; counter < index; counter++) {
+            current = current.next;
+        }
+        return current.data;
     }
 
     public boolean search(T search){
