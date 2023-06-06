@@ -64,8 +64,18 @@ public class Path {
     }
 
     @SuppressWarnings("unchecked")
-    public void appendToPath(Path p) {
+    public void appendToPath(Path path) {
         //TODO: Implement the function
+        if (path != null) {
+            for (Node node : path.nodes.toArray()) {
+                this.nodes.append(node);
+            }
+            for (Edge edge : path.edges.toArray()) {
+                this.edges.append(edge);
+            }
+            this.startNode = path.startNode;
+            this.endNode = path.endNode;
+        }
     }
 
     public boolean validPath() {
