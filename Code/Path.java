@@ -1,38 +1,100 @@
 public class Path {
     private final Node startNode;
     private Node endNode;
-    private final /*Own data structure goes here of type Node*/ nodes;
-    private final /*Own data structure goes here of type Edge*/ edges;
+    private final List<Node> nodes;
+    private final List<Edge> edges;
 
-    public Path(Node startNode, Node endNode, Node[] nodes, Edge[] edges){
+    public Path(Node startNode, Node endNode, Node[] nodes, Edge[] edges) {
         //TODO: Implement the function
+        this.startNode = startNode;
+        this.endNode = endNode;
+        if((nodes == null) && (edges == null)) {
+            this.nodes = new List<>();
+            this.edges = new List<>();
+        } else {
+            if (nodes == null) {
+                this.nodes = new List<>();
+            } else {
+                for(Node node : nodes) {
+                    this.nodes.append(node);
+                }
+            }
+            if (edges == null) {
+                this.edges = new List<>();
+            } else {
+                for(Edge edge : edges) {
+                    this.edges.append(edge);
+                }
+            }
+        }
     }
 
-    public Path(Path other){
+    public Path(Path other) {
         //TODO: Implement the function
+        if (other != null) {
+            this.startNode = other.startNode;
+            this.endNode = other.endNode;
+            this.nodes = new List<>();
+            this.edges = new List<>();
+            for (Node node : other.nodes.toArray()) {
+                this.nodes.append(node);
+            }
+            for (Edge edge : other.edges.toArray()) {
+                this.edges.append(edge);
+            }
+        } else {
+            this.startNode = null;
+            this.endNode = null;
+            this.nodes = new List<>();
+            this.edges = new List<>();
+        }
     }
 
-    public int computationalCostOfPath(){
+    public int computationalCostOfPath() {
         //TODO: Implement the function
+        if (validPath() == false) {
+            return 0;
+        } else {
+            int costOfPath = 0;
+            for (Edge edge : edges.toArray()) {
+                costOfPath += edge.getCompTime();
+            }
+            return costOfPath;
+        }
     }
 
     @SuppressWarnings("unchecked")
-    public void appendToPath(Path p){
+    public void appendToPath(Path p) {
         //TODO: Implement the function
     }
 
-    public boolean validPath(){
+    public boolean validPath() {
         //TODO: Implement the function
+        if ((edges.Size() + 1) != nodes.Size()) {
+            return false;
+        } else if (nodes.get(0) != this.startNode) {
+            return return false;
+        } else if (nodes.get(nodes.size() - 1) != this.endNode) {
+            return false;
+        } else {
+            for (int index = 0; index < edges.Size(); index++) {
+                Node tempNode = nodes.get(index);
+                Edge tempEdge = edges.get(index);
+                if (tempNode != tempEdge.getNext()) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
-    public String toString(){
+    public String toString() {
         //Provided function, do not alter!!!
         String str = "";
         str += ((Node)nodes.toArray()[0]).getAnnotation();
-        for(Object e: edges.toArray()){
+        for(Object e: edges.toArray()) {
             str += e.toString();
         }
         return str;
     }
-    
 }
