@@ -2,7 +2,7 @@ default:
 	javac *.java
 
 run:
-	java Main
+	java App
 
 clean:
 	rm -f *.class
@@ -10,7 +10,7 @@ clean:
 	clear
 
 tar:
-	tar -cvz CFG.java Node.java Edge.java Path.java -f Assignment_3.tar.gz
+	tar -cvz CFG.java Node.java Edge.java Path.java -f CFG_In_Java.tar.gz
 
 unzip:
 	tar -zxvf *.tar
