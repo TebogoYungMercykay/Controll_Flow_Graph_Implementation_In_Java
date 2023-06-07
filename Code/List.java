@@ -53,7 +53,6 @@ public class List<T> {
     public List(List<T> other) {
         this.length = 0;
         this.head = null;
-
         if(other != null && other.head != null) {
             this.head = new ListNode<>(other.head);
             this.length = other.length;
@@ -78,7 +77,7 @@ public class List<T> {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        ListNode tempListNode = head;
+        ListNode<T> tempListNode = head;
         while(tempListNode != null) {
             sb.append(tempListNode.data);
             if(tempListNode.next != null) {
@@ -90,11 +89,11 @@ public class List<T> {
     }
 
     public void append(T val) {
-        ListNode insertListNode = new ListNode(val);
+        ListNode<T> insertListNode = new ListNode<>(val);
         if(head == null) {
             head = insertListNode;
         } else {
-            ListNode lastNode = getNodeAt(length - 1);
+            ListNode<T> lastNode = getNodeAt(length - 1);
             lastNode.next = insertListNode;
         }
         length++;
@@ -126,8 +125,8 @@ public class List<T> {
             length--;
             return true;
         }
-        ListNode prevNode = head;
-        ListNode currNode = head.next;
+        ListNode<T> prevNode = head;
+        ListNode<T> currNode = head.next;
         while(currNode != null) {
             if(currNode.data.equals(val)) {
                 prevNode.next = currNode.next;
@@ -142,7 +141,7 @@ public class List<T> {
 
     public boolean remove(List<T> val) {
         boolean removed = false;
-        ListNode tempCurrent = val.head;
+        ListNode<T> tempCurrent = val.head;
         while(tempCurrent != null) {
             if(remove(tempCurrent.data)) {
                 removed = true;
@@ -170,11 +169,22 @@ public class List<T> {
         if(index < 0 || index >= length) {
             return null;
         }
-        ListNode currentNode = head;
+        ListNode<T> currentNode = head;
         for(int i = 0; i < index; i++) {
             currentNode = currentNode.next;
         }
         return currentNode.data;
+    }
+
+    public ListNode<T> getNodeAt(int index) {
+        if(index < 0 || index >= length) {
+            return null;
+        }
+        ListNode<T> currentNode = head;
+        for(int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+        return currentNode;
     }
 
     public boolean search(T search){
@@ -182,12 +192,12 @@ public class List<T> {
             ListNode<T> tempListHead = this.head;
             while(tempListHead != null){
                 if(tempListHead.data.equals(search) == true){
-                    return tempListHead;
+                    return true;
                 }
                 tempListHead = tempListHead.next;
             }
         }
-        return null;
+        return false;
     }
 
     public int size(){
