@@ -26,7 +26,9 @@ public class List<T> {
     public List(T[] elements){
         this.length = 0;
         this.head = null;
-        this.append(elements);
+        if (elements != null && elements.length > 0){
+            this.append(elements);
+        }
     }
 
     public Object[] toArray() {
