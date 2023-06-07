@@ -5,7 +5,7 @@ public class CFG {
     private List<Edge> edges;
     private List<Node> exitNodes;
 
-    public CFG(){
+    public CFG() {
         //TODO: Implement the function
         this.startNode = null;
         this.nodes = new List<>();
@@ -13,7 +13,7 @@ public class CFG {
         this.exitNodes = new List<>();
     }
 
-    public CFG(Node[] nodes, Edge[] edges, Node sNode, Node[] exitNodes){
+    public CFG(Node[] nodes, Edge[] edges, Node sNode, Node[] exitNodes) {
         //TODO: Implement the function
         this.startNode = sNode;
         this.startNode = sNode;
@@ -22,7 +22,7 @@ public class CFG {
         this.exitNodes = new List<>(exitNodes);
     }
 
-    public CFG(CFG other){
+    public CFG(CFG other) {
         //TODO: Implement the function
         if(other == null) {
             this.startNode = null;
@@ -37,29 +37,30 @@ public class CFG {
         }
     }
 
-    public void addNode(String annotation){
+    public void addNode(String annotation) {
         //TODO: Implement the function
-        for(Node node: (Node[]) nodes.toArray()){
-            if(node.getAnnotation() == annotation){
+        for (Object node : nodes.toArray()) {
+            Node tempNode = (Node) node;
+            if(tempNode.getAnnotation() == annotation) {
                 return;
             }
         }
         nodes.append(new Node(annotation));
     }
 
-    public void addNode(Node node){
+    public void addNode(Node node) {
         //TODO: Implement the function
-        if(node != null){
+        if(node != null) {
             nodes.append(node);
         }
     }
 
-    public void addEdge(String annotation, Node fromNode, Node toNode, int computationalTime){
+    public void addEdge(String annotation, Node fromNode, Node toNode, int computationalTime) {
         //TODO: Implement the function
-        if(computationalTime >= 0){
+        if(computationalTime >= 0) {
             for (Object edge : edges.toArray()) {
                 Edge tempEdge = (Edge) edge;
-                if(tempEdge.getAnnotation() == annotation){
+                if(tempEdge.getAnnotation() == annotation) {
                     return;
                 }
             }
@@ -70,21 +71,21 @@ public class CFG {
         }
     }
 
-    public void addExitNode(Node node){
+    public void addExitNode(Node node) {
         //TODO: Implement the function
-        if(nodes.search(node) == false){
+        if(nodes.contains(node) == false) {
             nodes.append(node);
         }
-        if(exitNodes.search(node) == false){
+        if(exitNodes.contains(node) == false) {
             exitNodes.append(node);
         }
     }
 
-    public void addStartNode(Node node){
+    public void addStartNode(Node node) {
         //TODO: Implement the function
-        if(startNode == null){
+        if(startNode == null) {
             startNode = node;
-            if(nodes.search(node) == false){
+            if(nodes.contains(node) == false) {
                 nodes.append(node);
             }
         }
@@ -93,13 +94,13 @@ public class CFG {
     public String toString() {
         // Do not alter!!!
         String res = "";
-        for(Object node: nodes.toArray()){
+        for(Object node: nodes.toArray()) {
             res += node.toString();
         }
         return res;
     }
 
-    public Node getNode(String annotation){
+    public Node getNode(String annotation) {
         //TODO: Implement the function
         for (Object node : nodes.toArray()) {
             Node tempNode = (Node) node;
@@ -110,42 +111,42 @@ public class CFG {
         return null;
     }
 
-    public int compTimeRequired(Path path){
+    public int compTimeRequired(Path path) {
         //TODO: Implement the function
         return path.computationalCostOfPath();
     }
 
-    public boolean isValid(){
+    public boolean isValid() {
         //TODO: Implement the function
         return true;
     }
 
-    public boolean isSESE(){
+    public boolean isSESE() {
         //TODO: Implement the function
         return true;
     }
 
-    public CFG[] splitGraph(){
+    public CFG[] splitGraph() {
         //TODO: Implement the function
         return null;
     }
 
-    public boolean isReachable(Node startNode, Node goalNode){
+    public boolean isReachable(Node startNode, Node goalNode) {
         //TODO: Implement the function
         return true;
     }
 
-    public Path shortestCompTimePath(Node sN, Node gN){
+    public Path shortestCompTimePath(Node sN, Node gN) {
         //TODO: Implement the function
         return null;
     }
 
-    public Path[] getPrimePaths(){
+    public Path[] getPrimePaths() {
         //TODO: Implement the function
         return null;
     }
 
-    public Path[] getSimplePaths(){
+    public Path[] getSimplePaths() {
         //TODO: Implement the function
         return null;
     }
