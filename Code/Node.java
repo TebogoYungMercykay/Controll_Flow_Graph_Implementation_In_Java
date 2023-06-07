@@ -9,6 +9,12 @@ public class Node {
         this.edges = new List<>();
     }
 
+    public Node(Node other){
+        //TODO: Implement the function
+        this.annotation = other.annotation;
+        this.edges = new List<>(other.edges);
+    }
+
     public void addEdge(Node nextNode, String annotation, int compTime){
         //TODO: Implement the function
         edges.append(new Edge(annotation, nextNode, compTime));
@@ -21,7 +27,12 @@ public class Node {
 
     public Edge[] getEdges(){
         //TODO: Implement the function
-        return (Edge[]) edges.toArray();
+        Object[] edgesObjects = this.edges.toArray();
+        Edge[] edgeAEdges = new Edge[edgesObjects.length];
+        for(int i = 0; i < edgesObjects.length; i++){
+            edgeAEdges[i] = (Edge) edgesObjects[i];
+        }
+        return edgeAEdges;
     }
 
     public String toString(){
