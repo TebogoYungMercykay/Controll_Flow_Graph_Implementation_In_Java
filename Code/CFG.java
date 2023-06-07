@@ -73,34 +73,49 @@ public class CFG {
 
     public void addNode(String annotation){
         //TODO: Implement the function
+        nodes.append(new Node(annotation));
     }
 
     public void addNode(Node node){
         //TODO: Implement the function
+        nodes.append(node);
     }
 
     public void addEdge(String annotation, Node fromNode, Node toNode, int computationalTime){
         //TODO: Implement the function
+        // Create a new Edge with the given parameters and add it to the list of edges
+        Edge edge = new Edge(annotation, toNode, computationalTime);
+        fromNode.addEdge(toNode, annotation, computationalTime);
+        edges.append(edge);
     }
 
-    public void addExitNode(Node n){
+    public void addExitNode(Node node){
         //TODO: Implement the function
+        exitNodes.append(node);
     }
 
-    public void addStartNode(Node n){
+    public void addStartNode(Node node){
         //TODO: Implement the function
+        startNode = node;
     }
 
     public String toString() {
         //Provided function, do not alter!!!
         String res = "";
-        for(Object n: nodes.toArray()){
-            res += n.toString();
+        for(Object node: nodes.toArray()){
+            res += node.toString();
         }
         return res;
     }
 
     public Node getNode(String annotation){
         //TODO: Implement the function
+        // Find and return the Node with the given annotation
+        for (Node node : nodes.toArray()) {
+            if (node.getAnnotation().equals(annotation)) {
+                return node;
+            }
+        }
+        return null;
     }
 }
