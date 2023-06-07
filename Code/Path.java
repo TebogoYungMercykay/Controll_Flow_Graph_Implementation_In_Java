@@ -42,7 +42,7 @@ public class Path {
 
     public int computationalCostOfPath() {
         //TODO: Implement the function
-        if (validPath() == false) {
+        if (validPath() == false || this.edges == null) {
             return 0;
         } else {
             int costOfPath = 0;
