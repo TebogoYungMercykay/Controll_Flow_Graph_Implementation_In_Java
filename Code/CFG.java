@@ -30,50 +30,16 @@ public class CFG {
             this.edges = new List<>();
             this.exitNodes = new List<>();
         } else {
-            this.startNode =(other.startNode != null) ? new Node(other.startNode) : null;
+            this.startNode = (other.startNode != null) ? new Node(other.startNode) : null;
             this.nodes = new List<>(other.nodes);
             this.edges = new List<>(other.edges);
             this.exitNodes = new List<>(other.exitNodes);
         }
     }
 
-    // Now The Real CFG Begins
-    public boolean isValid(){
-        //TODO: Implement the function
-    }
-
-    public boolean isSESE(){
-        //TODO: Implement the function
-    }
-
-    public CFG[] splitGraph(){
-        //TODO: Implement the function
-    }
-
-    public int compTimeRequired(Path path){
-        //TODO: Implement the function
-        return path.computationalCostOfPath();
-    }
-
-    public Path shortestCompTimePath(Node sN, Node gN){
-        //TODO: Implement the function
-    }
-
-    public boolean isReachable(Node startNode, Node goalNode){
-        //TODO: Implement the function
-    }
-
-    public Path[] getPrimePaths() {
-        //TODO: Implement the function
-    }
-
-    public Path[] getSimplePaths() {
-        //TODO: Implement the function
-    }
-
     public void addNode(String annotation){
         //TODO: Implement the function
-        for(Object node: nodes.toArray()){
+        for(Node node: (Node[]) nodes.toArray()){
             if(node.getAnnotation() == annotation){
                 return;
             }
@@ -90,9 +56,10 @@ public class CFG {
 
     public void addEdge(String annotation, Node fromNode, Node toNode, int computationalTime){
         //TODO: Implement the function
-        if(compTimeRequired >= 0){
-            for(Object edge: edges.toArray()){
-                if(edge.getAnnotation() == annotation){
+        if(computationalTime >= 0){
+            for (Object edge : edges.toArray()) {
+                Edge tempEdge = (Edge) edge;
+                if(tempEdge.getAnnotation() == annotation){
                     return;
                 }
             }
@@ -105,10 +72,10 @@ public class CFG {
 
     public void addExitNode(Node node){
         //TODO: Implement the function
-        if(nodes.search(node) == null){
+        if(nodes.search(node) == false){
             nodes.append(node);
         }
-        if(exitNodes.search(node) == null){
+        if(exitNodes.search(node) == false){
             exitNodes.append(node);
         }
     }
@@ -117,14 +84,14 @@ public class CFG {
         //TODO: Implement the function
         if(startNode == null){
             startNode = node;
-            if(nodes.search(node) == null){
+            if(nodes.search(node) == false){
                 nodes.append(node);
             }
         }
     }
 
     public String toString() {
-        //Provided function, do not alter!!!
+        // Do not alter!!!
         String res = "";
         for(Object node: nodes.toArray()){
             res += node.toString();
@@ -134,12 +101,52 @@ public class CFG {
 
     public Node getNode(String annotation){
         //TODO: Implement the function
-        // Find and return the Node with the given annotation
-        for(Node node : nodes.toArray()) {
-            if(node.getAnnotation().equals(annotation)) {
-                return node;
+        for (Object node : nodes.toArray()) {
+            Node tempNode = (Node) node;
+            if(tempNode.getAnnotation().equals(annotation)) {
+                return tempNode;
             }
         }
+        return null;
+    }
+
+    public int compTimeRequired(Path path){
+        //TODO: Implement the function
+        return path.computationalCostOfPath();
+    }
+
+    public boolean isValid(){
+        //TODO: Implement the function
+        return true;
+    }
+
+    public boolean isSESE(){
+        //TODO: Implement the function
+        return true;
+    }
+
+    public CFG[] splitGraph(){
+        //TODO: Implement the function
+        return null;
+    }
+
+    public boolean isReachable(Node startNode, Node goalNode){
+        //TODO: Implement the function
+        return true;
+    }
+
+    public Path shortestCompTimePath(Node sN, Node gN){
+        //TODO: Implement the function
+        return null;
+    }
+
+    public Path[] getPrimePaths(){
+        //TODO: Implement the function
+        return null;
+    }
+
+    public Path[] getSimplePaths(){
+        //TODO: Implement the function
         return null;
     }
 }
