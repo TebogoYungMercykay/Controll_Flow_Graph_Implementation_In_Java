@@ -58,27 +58,25 @@ public class Path {
     }
 
     public boolean validPath() {
-        //TODO: Implement the function
-        if ((edges.Size() + 1) != nodes.Size()) {
+        if (edges.size() + 1 != nodes.size()) {
             return false;
-        } else if (nodes.get(0) != this.startNode) {
-            return return false;
-        } else if (nodes.get(nodes.size() - 1) != this.endNode) {
+        } else if (!nodes.get(0).equals(startNode) || !nodes.get(nodes.size() - 1).equals(endNode)) {
             return false;
         } else {
-            for (int index = 0; index < edges.Size(); index++) {
-                Node tempNode = nodes.get(index);
-                Edge tempEdge = edges.get(index);
-                if (tempNode != tempEdge.getNext()) {
+            int index = 0;
+            for (Edge edge : edges) {
+                Node nextNode = nodes.get(index).getNext();
+                if (!nextNode.equals(edge.getNext())) {
                     return false;
                 }
+                index++;
             }
-            return true;
         }
+        return true;
     }
 
+    // Do not alter the next method!!!
     public String toString() {
-        // Do not alter!!!
         String str = "";
         str += ((Node)nodes.toArray()[0]).getAnnotation();
         for(Object e: edges.toArray()) {
