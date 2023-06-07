@@ -12,16 +12,14 @@ public class Path {
             this.nodes = new List<>();
             this.edges = new List<>();
         } else {
-            if (nodes == null) {
-                this.nodes = new List<>();
-            } else {
+            this.nodes = new List<>();
+            this.edges = new List<>();
+            if (nodes != null) {
                 for(Node node : nodes) {
                     this.nodes.append(node);
                 }
             }
-            if (edges == null) {
-                this.edges = new List<>();
-            } else {
+            if (edges != null) {
                 for(Edge edge : edges) {
                     this.edges.append(edge);
                 }
@@ -36,11 +34,15 @@ public class Path {
             this.endNode = other.endNode;
             this.nodes = new List<>();
             this.edges = new List<>();
-            for (Node node : other.nodes.toArray()) {
-                this.nodes.append(node);
+            if (other.nodes != null) {
+                for (Node node : other.nodes.toArray()) {
+                    this.nodes.append(node);
+                }
             }
-            for (Edge edge : other.edges.toArray()) {
-                this.edges.append(edge);
+            if (other.edges != null) {
+                for (Edge edge : other.edges.toArray()) {
+                    this.edges.append(edge);
+                }
             }
         } else {
             this.startNode = null;
