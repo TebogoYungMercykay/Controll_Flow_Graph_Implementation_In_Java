@@ -19,6 +19,18 @@ public class List<T> {
                 this.next = new ListNode<>(other.next);
             }
         }
+
+        public T getData() {
+            return data;
+        }
+
+        public ListNode<T> getNext() {
+            return next;
+        }
+
+        public void setNext(ListNode<T> next) {
+            this.next = next;
+        }
     }
 
     // The LinkedList Class:
@@ -46,6 +58,10 @@ public class List<T> {
             this.head = new ListNode<>(other.head);
             this.length = other.length;
         }
+    }
+
+    public boolean isEmpty() {
+        return head == null;
     }
 
     public Object[] toArray() {
@@ -90,6 +106,15 @@ public class List<T> {
                 append(element);
             }
         }
+    }
+
+    public T pop() {
+        if(isEmpty() == false) {
+            T data = head.getData();
+            head = head.getNext();
+            return data;
+        }
+        return null;
     }
 
     public boolean remove(T val) {
