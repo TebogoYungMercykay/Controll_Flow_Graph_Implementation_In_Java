@@ -15,7 +15,7 @@ public class List<T> {
 
         public ListNode(ListNode<T> other) {
             this.data = other.data;
-            if (other.next != null) {
+            if(other.next != null) {
                 this.next = new ListNode<>(other.next);
             }
         }
@@ -33,7 +33,7 @@ public class List<T> {
     public List(T[] elements){
         this.length = 0;
         this.head = null;
-        if (elements != null && elements.length > 0){
+        if(elements != null && elements.length > 0){
             this.append(elements);
         }
     }
@@ -42,7 +42,7 @@ public class List<T> {
         this.length = 0;
         this.head = null;
 
-        if (other != null && other.head != null) {
+        if(other != null && other.head != null) {
             this.head = new ListNode<>(other.head);
             this.length = other.length;
         }
@@ -52,7 +52,7 @@ public class List<T> {
         Object[] array = new Object[length];
         ListNode<T> tempListNode = head;
         int index = 0;
-        while (tempListNode != null) {
+        while(tempListNode != null) {
             array[index] = tempListNode.data;
             tempListNode = tempListNode.next;
             index++;
@@ -60,80 +60,73 @@ public class List<T> {
         return array;
     }
 
-    public String toString(){
-        String tempString = "";
-        if(this.length == 0 || this.head == null){
-            return tempString;
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        ListNode tempListNode = head;
+        while(tempListNode != null) {
+            sb.append(tempListNode.data);
+            if(tempListNode.next != null) {
+                sb.append(",");
+            }
+            tempListNode = tempListNode.next;
         }
-        tempString += this.head.toString();
-        for(ListNode<T> tempListNode = this.head.next; tempListNode != null; tempListNode = tempListNode.next){
-            tempString += "," + tempListNode.toString();
-        }
-        return tempString;
+        return sb.toString();
     }
 
-    public void append(T val){
-        ListNode<T> insertListNode = new ListNode<T>(val);
-        if(this.length == 0 && this.head == null){
-            this.head = insertListNode;
-            this.length += 1;
+    public void append(T val) {
+        ListNode insertListNode = new ListNode(val);
+        if(head == null) {
+            head = insertListNode;
+        } else {
+            ListNode lastNode = getNodeAt(length - 1);
+            lastNode.next = insertListNode;
         }
-        else {
-            ListNode<T> ListNodePtr = this.head;
-            while(ListNodePtr.next != null){
-                ListNodePtr = ListNodePtr.next;
-            }
-            ListNodePtr.next = insertListNode;
-            this.length += 1;
-        }
+        length++;
     }
 
     public void append(T[] elements) {
-        if (elements != null) {
-            for (T element : elements) {
+        if(elements != null) {
+            for(T element : elements) {
                 append(element);
             }
         }
     }
 
-    public boolean remove(T val){
-        ListNode<T> previousListNode = null;
-        ListNode<T> ListNodePtr = this.head;
-        if(this.head == null || this.length == 0){
+    public boolean remove(T val) {
+        if(head == null) {
             return false;
         }
-        while(ListNodePtr != null && ListNodePtr.data.equals(val) == false){
-            previousListNode = ListNodePtr;
-            ListNodePtr = ListNodePtr.next;
-        }
-        if(previousListNode == null && this.head.data.equals(val) == true){
-            this.head = this.head.next;
-            this.length -= 1;
+        if(head.data.equals(val)) {
+            head = head.next;
+            length--;
             return true;
         }
-        else if(ListNodePtr != null && previousListNode != null  && ListNodePtr.data.equals(val) == true){
-            previousListNode.next = ListNodePtr.next;
-            this.length -= 1;
-            return true;
+        ListNode prevNode = head;
+        ListNode currNode = head.next;
+        while(currNode != null) {
+            if(currNode.data.equals(val)) {
+                prevNode.next = currNode.next;
+                length--;
+                return true;
+            }
+            prevNode = currNode;
+            currNode = currNode.next;
         }
         return false;
     }
 
-    public boolean remove(List<T> val){
-        int counter = 0;
-        ListNode<T> tempCurrent = val.head;
-        while(tempCurrent != null){
-            boolean removed = this.remove(tempCurrent.data);
-            if(removed == true){
-                counter += 1;
+    public boolean remove(List<T> val) {
+        boolean removed = false;
+        ListNode tempCurrent = val.head;
+        while(tempCurrent != null) {
+            if(remove(tempCurrent.data)) {
+                removed = true;
             }
             tempCurrent = tempCurrent.next;
         }
-        if(counter >= 1){
-            return true;
-        }
-        return false;
+        return removed;
     }
+
 
     public boolean contains(T search){
         if(this.head != null){
@@ -149,14 +142,14 @@ public class List<T> {
     }
 
     public T get(int index) {
-        if (index < 0 || index >= length) {
-            return -1;
+        if(index < 0 || index >= length) {
+            return null;
         }
-        ListNode<T> current = head;
-        for (int counter = 0; counter < index; counter++) {
-            current = current.next;
+        ListNode currentNode = head;
+        for(int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
         }
-        return current.data;
+        return currentNode.data;
     }
 
     public boolean search(T search){
@@ -172,7 +165,7 @@ public class List<T> {
         return null;
     }
 
-    public int Size(){
+    public int size(){
         return this.length;
     }
 
