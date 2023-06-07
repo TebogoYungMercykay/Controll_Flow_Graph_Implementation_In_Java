@@ -12,6 +12,13 @@ public class List<T> {
             this.data = val;
             this.next = null;
         }
+
+        public ListNode(ListNode<T> other) {
+            this.data = other.data;
+            if (other.next != null) {
+                this.next = new ListNode<>(other.next);
+            }
+        }
     }
 
     // The LinkedList Class:
@@ -28,6 +35,16 @@ public class List<T> {
         this.head = null;
         if (elements != null && elements.length > 0){
             this.append(elements);
+        }
+    }
+
+    public List(List<T> other) {
+        this.length = 0;
+        this.head = null;
+
+        if (other != null && other.head != null) {
+            this.head = new ListNode<>(other.head);
+            this.length = other.length;
         }
     }
 
