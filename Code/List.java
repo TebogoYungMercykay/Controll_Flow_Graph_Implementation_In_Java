@@ -63,6 +63,14 @@ public class List<T> {
         }
     }
 
+    public void append(T[] elements) {
+        if (elements != null) {
+            for (T element : elements) {
+                append(element);
+            }
+        }
+    }
+
     public boolean remove(T val){
         ListNode<T> previousListNode = null;
         ListNode<T> ListNodePtr = this.head;
