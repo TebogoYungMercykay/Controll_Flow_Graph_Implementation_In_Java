@@ -16,30 +16,10 @@ public class CFG {
     public CFG(Node[] nodes, Edge[] edges, Node sNode, Node[] exitNodes){
         //TODO: Implement the function
         this.startNode = sNode;
-        if((nodes == null) && (edges == null) && (exitNodes == null)) {
-            this.nodes = new List<>();
-            this.edges = new List<>();
-            this.exitNodes = new List<>();
-        } else {
-            this.nodes = new List<>();
-            this.edges = new List<>();
-            this.exitNodes = new List<>();
-            if (nodes != null) {
-                for(Node node : nodes) {
-                    this.nodes.append(node);
-                }
-            }
-            if (edges != null) {
-                for(Edge edge : edges) {
-                    this.edges.append(edge);
-                }
-            }
-            if (exitNodes != null) {
-                for(Node node : exitNodes) {
-                    this.exitNodes.append(node);
-                }
-            }
-        }
+        this.startNode = sNode;
+        this.nodes = new List<>(nodes);
+        this.edges = new List<>(edges);
+        this.exitNodes = new List<>(exitNodes);
     }
 
     public CFG(CFG other){
@@ -50,55 +30,14 @@ public class CFG {
             this.edges = new List<>();
             this.exitNodes = new List<>();
         } else {
-            this.startNode = new Node(other.startNode.getAnnotation());
-            if (other.nodes != null) {
-                for (Node node : other.nodes.toArray()) {
-                    Node tempNode = new Node(node.getAnnotation());
-                    for (Edge edge : node.getEdges()) {
-                        Node nextNode = edge.getNext();
-                        String annotation = edge.getAnnotation();
-                        int compTime = edge.getCompTime();
-                        tempNode.addEdge(new Node(nextNode.getAnnotation()), annotation, compTime);
-                    }
-                    this.nodes.append(tempNode);
-                }
-            }
-            if (other.edges != null) {
-                for (Edge edge : other.edges.toArray()) {
-                    Node nextNode = edge.getNext();
-                    String annotation = edge.getAnnotation();
-                    int compTime = edge.getCompTime();
-                    Node tempNode = null;
-                    if (nextNode != null) {
-                        tempNode = new Node(nextNode.getAnnotation());
-                        for (Edge nextEdge : nextNode.getEdges()) {
-                            Node nextNextNode = nextEdge.getNext();
-                            String nextAnnotation = nextEdge.getAnnotation();
-                            int nextCompTime = nextEdge.getCompTime();
-                            tempNode.addEdge(new Node(nextNextNode.getAnnotation()), nextAnnotation, nextCompTime);
-                        }
-                    }
-                    Edge tempEdge = new Edge(annotation, tempNode, compTime);
-                    this.edges.append(tempEdge);
-                }
-            }
-            if (other.exitNodes != null) {
-                for (Node node : other.exitNodes.toArray()) {
-                    Node tempNode = new Node(node.getAnnotation());
-                    for (Edge edge : node.getEdges()) {
-                        Node nextNode = edge.getNext();
-                        String annotation = edge.getAnnotation();
-                        int compTime = edge.getCompTime();
-                        tempNode.addEdge(new Node(nextNode.getAnnotation()), annotation, compTime);
-                    }
-
-                    this.exitNodes.append(tempNode);
-                }
-            }
+            this.startNode = (other.startNode != null) ? new Node(other.startNode) : null;
+            this.nodes = new List<>(other.nodes);
+            this.edges = new List<>(other.edges);
+            this.exitNodes = new List<>(other.exitNodes);
         }
     }
 
-
+    // Now The Real CFG Begins
     public boolean isValid(){
         //TODO: Implement the function
     }
