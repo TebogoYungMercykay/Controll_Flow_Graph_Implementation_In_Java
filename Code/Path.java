@@ -22,8 +22,8 @@ public class Path {
         if (other != null) {
             this.startNode = other.startNode;
             this.endNode = other.endNode;
-            this.nodes = new List<>(other.nodes.toArray());
-            this.edges = new List<>(other.edges.toArray());
+            this.edges = new List<>(other.edges);
+            this.nodes = new List<>(other.nodes);
         } else {
             this.startNode = null;
             this.endNode = null;
@@ -32,14 +32,23 @@ public class Path {
         }
     }
 
+    public List<Node> getNodes(){
+        return this.nodes;
+    }
+
+    public List<Edge> getEdges(){
+        return this.edges;
+    }
+
     public int computationalCostOfPath() {
         //TODO: Implement the function
         if (validPath() == false) {
             return 0;
         } else {
             int costOfPath = 0;
-            for (Edge edge : edges.toArray()) {
-                costOfPath += edge.getCompTime();
+            for (Object edge : edges.toArray()) {
+                Edge tempEdge = (Edge) edge;
+                costOfPath += tempEdge.getCompTime();
             }
             return costOfPath;
         }
@@ -49,8 +58,18 @@ public class Path {
     public void appendToPath(Path path) {
         //TODO: Implement the function
         if (path != null) {
-            this.nodes.append(path.nodes.toArray());
-            this.edges.append(path.edges.toArray());
+            Object[] toArrayObjects = path.edges.toArray();
+            Edge[] edgeEdges = new Edge[toArrayObjects.length];
+            for(int i = 0; i < toArrayObjects.length; i++){
+                edgeEdges[i] = (Edge) toArrayObjects[i];
+            }
+            toArrayObjects = path.nodes.toArray();
+            Node[] nodeNodes = new Node[toArrayObjects.length];
+            for(int i = 0; i < toArrayObjects.length; i++){
+                nodeNodes[i] = (Node) toArrayObjects[i];
+            }
+            this.nodes.append(nodeNodes);
+            this.edges.append(edgeEdges);
             this.endNode = path.endNode;
         } else {
             return;
@@ -63,16 +82,23 @@ public class Path {
         } else if (!nodes.get(0).equals(startNode) || !nodes.get(nodes.size() - 1).equals(endNode)) {
             return false;
         } else {
-            int index = 0;
-            for (Edge edge : edges) {
-                Node nextNode = nodes.get(index).getNext();
-                if (!nextNode.equals(edge.getNext())) {
+            for (int index = 0; index < edges.size(); index++) {
+                Boolean found = false;
+                Edge tempEdge = edges.get(index);
+                Node ithNode = nodes.get(index);
+                for(Edge temp : ithNode.getEdges()){
+                    if(temp == tempEdge){
+                        found = true;
+                        break;
+                    }
+                }
+                Node ithPlusOne = nodes.get(index + 1);
+                if (found == true && ithPlusOne != tempEdge.getNext()) {
                     return false;
                 }
-                index++;
             }
+            return true;
         }
-        return true;
     }
 
     // Do not alter the next method!!!
