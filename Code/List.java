@@ -187,17 +187,17 @@ public class List<T> {
         return currentNode;
     }
 
-    public boolean search(T search){
+    public ListNode<T> search(T search){
         if(this.head != null){
             ListNode<T> tempListHead = this.head;
             while(tempListHead != null){
                 if(tempListHead.data.equals(search) == true){
-                    return true;
+                    return tempListHead;
                 }
                 tempListHead = tempListHead.next;
             }
         }
-        return false;
+        return null;
     }
 
     public int size(){
