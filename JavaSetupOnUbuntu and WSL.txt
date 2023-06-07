@@ -7,8 +7,7 @@ sudo apt install openjdk-16-jre-headless  # version 16.0.1+9-1~20.04
 sudo apt install openjdk-17-jre-headless  # version 17.0.5+8-2ubuntu1~20.04
 sudo apt install openjdk-8-jre-headless   # version 8u352-ga-1~20.04
 
-0721355893
-
+# version
 #!/bin/bash
 
 set -ex
@@ -48,3 +47,5 @@ export DERBY_HOME=/usr/lib/jvm/oracle_jdk8/db" | sudo tee -a /etc/profile.d/orac
 ################################
 
 # The End
+
+################################
