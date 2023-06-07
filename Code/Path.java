@@ -12,18 +12,8 @@ public class Path {
             this.nodes = new List<>();
             this.edges = new List<>();
         } else {
-            this.nodes = new List<>();
-            this.edges = new List<>();
-            if (nodes != null) {
-                for(Node node : nodes) {
-                    this.nodes.append(node);
-                }
-            }
-            if (edges != null) {
-                for(Edge edge : edges) {
-                    this.edges.append(edge);
-                }
-            }
+            this.nodes = new List<>(nodes);
+            this.edges = new List<>(edges);
         }
     }
 
@@ -32,18 +22,8 @@ public class Path {
         if (other != null) {
             this.startNode = other.startNode;
             this.endNode = other.endNode;
-            this.nodes = new List<>();
-            this.edges = new List<>();
-            if (other.nodes != null) {
-                for (Node node : other.nodes.toArray()) {
-                    this.nodes.append(node);
-                }
-            }
-            if (other.edges != null) {
-                for (Edge edge : other.edges.toArray()) {
-                    this.edges.append(edge);
-                }
-            }
+            this.nodes = new List<>(other.nodes.toArray());
+            this.edges = new List<>(other.edges.toArray());
         } else {
             this.startNode = null;
             this.endNode = null;
@@ -69,13 +49,8 @@ public class Path {
     public void appendToPath(Path path) {
         //TODO: Implement the function
         if (path != null) {
-            for (Node node : path.nodes.toArray()) {
-                this.nodes.append(node);
-            }
-            for (Edge edge : path.edges.toArray()) {
-                this.edges.append(edge);
-            }
-            this.startNode = path.startNode;
+            this.nodes.append(path.nodes.toArray());
+            this.edges.append(path.edges.toArray());
             this.endNode = path.endNode;
         } else {
             return;
