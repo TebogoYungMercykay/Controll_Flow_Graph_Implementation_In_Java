@@ -23,6 +23,12 @@ public class List<T> {
         this.head = null;
     }
 
+    public List(T[] elements){
+        this.length = 0;
+        this.head = null;
+        this.append(elements);
+    }
+
     public Object[] toArray() {
         Object[] array = new Object[length];
         ListNode<T> tempListNode = head;
