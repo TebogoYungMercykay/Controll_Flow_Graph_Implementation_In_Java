@@ -1,0 +1,96 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayOfListsGenerator {
+    public static List<String> generateCombinations(String[] elements) {
+        int n = elements.length;
+        List<String> combinations = new ArrayList<>();
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= n - i; j++) {
+                StringBuilder sb = new StringBuilder();
+                for (int k = j; k < j + i; k++) {
+                    sb.append(elements[k]);
+                    if (k != j + i - 1) {
+                        sb.append("->");
+                    }
+                }
+                combinations.add(sb.toString());
+            }
+        }
+
+        return combinations;
+    }
+
+    public static void main(String[] args) {
+        String[] elements = {
+            "N1", "E1", "N2", "E2", "N3", "E3", "N4", "E4", "N3", "E5", "N5",
+            "N1", "E1", "N2", "E2", "N3", "E5", "N5"
+        };
+        List<String> combinations = generateCombinations(elements);
+
+        for (String combination : combinations) {
+            System.out.println(combination);
+        }
+    }
+}
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayOfListsGenerator {
+    public static List<List<Object>> generateCombinations(Object[][] elements) {
+        int n = elements.length;
+        List<List<Object>> combinations = new ArrayList<>();
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= n - i; j++) {
+                List<Object> combination = new ArrayList<>();
+                for (int k = j; k < j + i; k++) {
+                    combination.add(elements[k]);
+                }
+                combinations.add(combination);
+            }
+        }
+
+        return combinations;
+    }
+
+    public static void main(String[] args) {
+        Object[][] elements = {
+            {"N1"},
+            {"E1", 0},
+            {"N2"},
+            {"E2", 0},
+            {"N3"},
+            {"E3", 0},
+            {"N4"},
+            {"E4", 0},
+            {"N3"},
+            {"E5", 0},
+            {"N5"},
+            {"N1"},
+            {"E1", 0},
+            {"N2"},
+            {"E2", 0},
+            {"N3"},
+            {"E5", 0},
+            {"N5"}
+        };
+        List<List<Object>> combinations = generateCombinations(elements);
+
+        for (List<Object> combination : combinations) {
+            for (Object element : combination) {
+                if (element instanceof Object[]) {
+                    Object[] subArray = (Object[]) element;
+                    for (Object subElement : subArray) {
+                        System.out.print(subElement + " ");
+                    }
+                } else {
+                    System.out.print(element + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
