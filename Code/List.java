@@ -27,10 +27,6 @@ public class List<T> {
         public ListNode<T> getNext() {
             return next;
         }
-
-        public void setNext(ListNode<T> next) {
-            this.next = next;
-        }
     }
 
     // The LinkedList Class:
