@@ -25,6 +25,10 @@ public class Node {
         return this.annotation;
     }
 
+    public List<Edge> getEdgesList() {
+        return edges;
+    }
+
     public Edge[] getEdges(){
         //TODO: Implement the function
         Object[] edgesObjects = this.edges.toArray();
