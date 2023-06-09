@@ -32,17 +32,35 @@ public class Path {
         }
     }
 
-    public List<Node> getNodes(){
-        return this.nodes;
+    public Node[] getNodes(){
+        Object[] toArrayObjects = this.nodes.toArray();
+        Node[] nodeNodes = new Node[toArrayObjects.length];
+        for(int i = 0; i < toArrayObjects.length; i++){
+            nodeNodes[i] = (Node) toArrayObjects[i];
+        }
+        return nodeNodes;
     }
 
-    public List<Edge> getEdges(){
-        return this.edges;
+    public Edge[] getEdges(){
+        Object[] toArrayObjects = this.edges.toArray();
+        Edge[] edgeEdges = new Edge[toArrayObjects.length];
+        for(int i = 0; i < toArrayObjects.length; i++){
+            edgeEdges[i] = (Edge) toArrayObjects[i];
+        }
+        return edgeEdges;
+    }
+
+    public Node getStartNode() {
+        return this.startNode;
+    }
+
+    public Node getEndNode() {
+        return this.endNode;
     }
 
     public int computationalCostOfPath() {
         //TODO: Implement the function
-        if (validPath() == false || this.edges == null) {
+        if (validPath() == false) {
             return 0;
         } else {
             int costOfPath = 0;
