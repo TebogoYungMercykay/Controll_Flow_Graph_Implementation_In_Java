@@ -7,7 +7,7 @@
 		- Each edge connects a pairof vertices. If the edges are directional, the graph is known as a directed graph.
 		- Each edge can be assigned a number that represents values such as cost, distance,length or weight. Such a graph is then called a weighted directed graph.
 	- ## `Control Flow Graphs`.
-		- Developed by Frances E. Allen in the 1970s [All70], Control Flow Graphs (CFG)are a static analysis of software code used in software testing.
+		- Developed by Frances E. Allen in the 1970s, Control Flow Graphs (CFG)are a static analysis of software code used in software testing.
 		- Blocks of code inthe source code represent nodes in the graph. Sequential flows between blocks ofcode represent edges between nodes. CFG have designated entry points and exitpoints.
 		- A CFG is known as a Single Entry Single Exit (SESE) graph if it only hasa single entry node and a single exit node. A problem that arose during researchon static analysis is how to deal with loops in the CFG.
 		- In an attempt to solvethese issues, Simple and Prime paths were introduced.
