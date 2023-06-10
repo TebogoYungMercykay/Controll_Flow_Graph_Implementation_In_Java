@@ -5,22 +5,22 @@
 		- A Graph is a collection of vertices and connections between them.
 		- The verticesare nodes and the connections are known as edges.
 		- Each edge connects a pairof vertices. If the edges are directional, the graph is known as a directed graph.
-		- Each edge can be assigned a number that represents values such as cost, distance,length or weight. Such a graph is then called a weighted directed graph.
+		- Each edge can be assigned a number that represents values such as cost, distance, length or weight. Such a graph is then called a weighted directed graph.
 	- ## `Control Flow Graphs`.
 		- Developed by Frances E. Allen in the 1970s, Control Flow Graphs (CFG)are a static analysis of software code used in software testing.
-		- Blocks of code inthe source code represent nodes in the graph. Sequential flows between blocks ofcode represent edges between nodes. CFG have designated entry points and exitpoints.
-		- A CFG is known as a Single Entry Single Exit (SESE) graph if it only hasa single entry node and a single exit node. A problem that arose during researchon static analysis is how to deal with loops in the CFG.
-		- In an attempt to solvethese issues, Simple and Prime paths were introduced.
+		- Blocks of code inthe source code represent nodes in the graph. Sequential flows between blocks ofcode represent edges between nodes. CFG have designated entry points and exit points.
+		- A CFG is known as a Single Entry Single Exit (SESE) graph if it only has a single entry node and a single exit node. A problem that arose during researchon static analysis is how to deal with loops in the CFG.
+		- In an attempt to solve these issues, Simple and Prime paths were introduced.
 	- ## `Simple Paths`
-		- From theory, it should be clear that loops are problematic. It is not always possibleto know at compile time or even before then how many times the loop wouldbe executed.
-		- This problem is similar to that of the Halting Problem (which isalgorithmically unsolvable).
+		- From theory, it should be clear that loops are problematic. It is not always possible to know at compile time or even before then how many times the loop would be executed.
+		- This problem is similar to that of the Halting Problem (which is algorithmically unsolvable).
 		- In an attempt to approach this problem, CFGs make use of something called a
-		- Simple Path. A Simple Path is a path of any length that satisfies the followingproperties
+		- Simple Path. A Simple Path is a path of any length that satisfies the following properties
 			- Only the first and last node in the path may be repeated.
 			- All edges used in the path needs to exist in the graph.
 	- ## `Prime Paths`
 		- To reduce the possible paths created by Simple Paths, Prime Paths were intro-duced.
-		- A Prime Path is a Simple Path that is not a sub-path of another SimplePath. In other words, a Prime Path is the longest Simple Path that does not formpart of another Simple Path.
+		- A Prime Path is a Simple Path that is not a sub-path of another Simple Path. In other words, a Prime Path is the longest Simple Path that does not form part of another Simple Path.
 ---
 ## REQUIREMENTS BEFORE RUNNING CODES:
 - Install an IDE that compiles and runs Java codes. Recommendation `VS Code`
