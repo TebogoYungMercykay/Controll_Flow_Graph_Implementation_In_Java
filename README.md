@@ -13,7 +13,7 @@
 		- In an attempt to solvethese issues, Simple and Prime paths were introduced.
 	- ## `Simple Paths`
 		- From theory, it should be clear that loops are problematic. It is not always possibleto know at compile time or even before then how many times the loop wouldbe executed.
-		- This problem is similar to that of the Halting Problem (which isalgorithmically unsolvable) [Bur87].
+		- This problem is similar to that of the Halting Problem (which isalgorithmically unsolvable).
 		- In an attempt to approach this problem, CFGs make use of something called a
 		- Simple Path. A Simple Path is a path of any length that satisfies the followingproperties
 			- Only the first and last node in the path may be repeated.
