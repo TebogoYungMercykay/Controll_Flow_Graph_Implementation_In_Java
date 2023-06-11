@@ -47,10 +47,10 @@
 ---
 
  ## MAKEFILE
- ##### NB: A makefile Is Included to compile and run the codes on the terminal with the following commands:=
-- make clean
-- make
-- make run
+ ##### NB: A makefile Is Included to `compile` and `run` the codes on the `terminal` with the following `commands`:=
+- `make clean`
+- `make`
+- `make run`
 
 ```Java
 default:
